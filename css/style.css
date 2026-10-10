@@ -1,0 +1,15 @@
+/* ============================================================
+   MOHAMED IRFAN — PORTFOLIO MAIN STYLESHEET
+   Modular CSS Architecture
+   ============================================================ */
+
+@import url("./tokens.css");
+@import url("./nav.css");
+@import url("./hero.css");
+@import url("./tech.css");
+@import url("./journey.css");
+@import url("./projects.css");
+@import url("./gallery.css");
+@import url("./resume.css");
+@import url("./about-contact.css");
+@import url("./animations.css");

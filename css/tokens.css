@@ -1,0 +1,232 @@
+/* ============================================================
+   TOKENS & BASE STYLES
+   Design Tokens, Color Palettes, Typography & CSS Reset
+   ============================================================ */
+
+:root {
+  --void: #03050b;
+  --void-rgb: 3 5 11;
+  --deep: #070d1c;
+  --panel: rgb(var(--dk) / .55);
+  --blue: rgb(var(--a));
+  --blue-hi: rgb(var(--ah));
+  --cyan: rgb(var(--bh));
+  --violet: rgb(var(--b));
+  --ice: #e9f0ff;
+  --mute: #8b97b3;
+  --body2: #b9c4dd;
+  --body2-hi: #c8d6f5;
+  --line: rgb(var(--ah) / .22);
+
+  /* Accent tokens (RGB triples, themeable) — default: Professional */
+  --a: 37 99 235;
+  --al: 191 219 254;
+  --ah: 96 165 250;
+  --b: 20 184 166;
+  --bh: 45 212 191;
+  --dk: 12 19 36;
+  --t1: 148 163 184;
+  --on: 255 255 255;
+  --c-fe: 96 165 250;
+  --c-be: 45 212 191;
+  --c-ml: 129 140 248;
+  --c-db: 167 139 250;
+  --c-tl: 148 163 184;
+  --d1: #0b1220;
+  --d2: #111a2e;
+  --d3: #17233d;
+
+  --display: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --body: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  color-scheme: dark;
+}
+
+/* ============ Color Palette Themes ============ */
+[data-theme="sunset"] {
+  --a: 255 92 138;
+  --al: 255 190 176;
+  --ah: 255 140 165;
+  --b: 255 154 61;
+  --bh: 255 196 120;
+  --dk: 18 10 22;
+  --t1: 184 158 175;
+  --c-fe: 255 122 158;
+  --c-be: 255 154 61;
+  --c-ml: 94 234 212;
+  --c-db: 196 132 255;
+  --c-tl: 255 214 138;
+  --d1: #1c0f1b;
+  --d2: #2a1526;
+  --d3: #3a1c33;
+}
+
+[data-theme="ocean"] {
+  --a: 59 130 246;
+  --al: 183 211 255;
+  --ah: 138 180 255;
+  --b: 139 92 246;
+  --bh: 167 139 250;
+  --dk: 10 18 40;
+  --t1: 139 151 179;
+  --c-fe: 127 176 255;
+  --c-be: 167 139 250;
+  --c-ml: 94 234 212;
+  --c-db: 224 163 255;
+  --c-tl: 223 232 255;
+  --d1: #0a1028;
+  --d2: #101b40;
+  --d3: #18215a;
+}
+
+[data-theme="aurora"] {
+  --a: 45 212 191;
+  --al: 167 243 233;
+  --ah: 94 234 212;
+  --b: 129 140 248;
+  --bh: 165 180 252;
+  --dk: 8 22 26;
+  --t1: 141 175 175;
+  --c-fe: 94 234 212;
+  --c-be: 129 140 248;
+  --c-ml: 110 231 183;
+  --c-db: 216 180 254;
+  --c-tl: 186 230 253;
+  --d1: #071c1e;
+  --d2: #0c2a2b;
+  --d3: #123a37;
+}
+
+[data-theme="emerald"] {
+  --a: 52 211 153;
+  --al: 167 243 208;
+  --ah: 110 231 183;
+  --b: 250 204 21;
+  --bh: 253 224 71;
+  --dk: 8 20 16;
+  --t1: 150 179 160;
+  --c-fe: 110 231 183;
+  --c-be: 250 204 21;
+  --c-ml: 94 234 212;
+  --c-db: 134 239 172;
+  --c-tl: 253 224 71;
+  --d1: #07160f;
+  --d2: #0c2419;
+  --d3: #123322;
+}
+
+[data-theme="peach"] {
+  --a: 255 138 101;
+  --al: 255 214 194;
+  --ah: 255 171 145;
+  --b: 255 179 71;
+  --bh: 255 205 128;
+  --dk: 42 28 22;
+  --t1: 168 130 110;
+  --c-fe: 255 138 101;
+  --c-be: 255 179 71;
+  --c-ml: 94 200 181;
+  --c-db: 255 138 178;
+  --c-tl: 255 214 153;
+  --d1: #241712;
+  --d2: #33221a;
+  --d3: #402c22;
+}
+
+/* ============ Light Mode Overrides ============ */
+:root[data-mode="light"] {
+  --void: #ffffff;
+  --void-rgb: 255 255 255;
+  --deep: #f4f2f7;
+  --ice: #181722;
+  --mute: #615b73;
+  --body2: #4b5163;
+  --body2-hi: #33394a;
+  --dk: 255 255 255;
+  --t1: 90 84 104;
+  color-scheme: light;
+}
+
+/* ============ Base CSS Reset ============ */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 64px);
+  background: var(--void);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--void);
+  color: var(--ice);
+  font-family: var(--body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.wrap {
+  width: min(1180px, 90vw);
+  margin: 0 auto;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ============ Tech / Code Ambient Backdrop ============ */
+.tech-overlay-global {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22320%22%20height%3D%22320%22%20viewBox%3D%220%200%20320%20320%22%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%237fd4ff%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%0A%20%20%3Cpath%20d%3D%22M14%2046h46M60%2046v34M60%2080h40%22%20opacity%3D%22.55%22/%3E%0A%20%20%3Ccircle%20cx%3D%2214%22%20cy%3D%2246%22%20r%3D%223.2%22%20fill%3D%22%237fd4ff%22%20opacity%3D%22.6%22/%3E%0A%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%2280%22%20r%3D%223.2%22%20fill%3D%22%237fd4ff%22%20opacity%3D%22.6%22/%3E%0A%20%20%3Cpath%20d%3D%22M210%2024h56M238%2024v28%22%20opacity%3D%22.5%22/%3E%0A%20%20%3Ccircle%20cx%3D%22266%22%20cy%3D%2224%22%20r%3D%223.2%22%20fill%3D%22%237fd4ff%22%20opacity%3D%22.55%22/%3E%0A%20%20%3Cpath%20d%3D%22M70%20170h50M120%20170v46M120%20216h36%22%20opacity%3D%22.5%22/%3E%0A%20%20%3Ccircle%20cx%3D%2270%22%20cy%3D%22170%22%20r%3D%223.2%22%20fill%3D%22%237fd4ff%22%20opacity%3D%22.55%22/%3E%0A%20%20%3Ccircle%20cx%3D%22156%22%20cy%3D%22216%22%20r%3D%223.2%22%20fill%3D%22%237fd4ff%22%20opacity%3D%22.55%22/%3E%0A%20%20%3Cpath%20d%3D%22M210%20230h64M244%20230v50%22%20opacity%3D%22.45%22/%3E%0A%20%20%3Ccircle%20cx%3D%22274%22%20cy%3D%22230%22%20r%3D%223.2%22%20fill%3D%22%237fd4ff%22%20opacity%3D%22.5%22/%3E%0A%3C/g%3E%0A%3Cg%20fill%3D%22%237fd4ff%22%20font-family%3D%22ui-monospace%2CSFMono-Regular%2CMenlo%2CConsolas%2Cmonospace%22%20font-weight%3D%22600%22%3E%0A%20%20%3Ctext%20x%3D%22170%22%20y%3D%2266%22%20font-size%3D%2226%22%20opacity%3D%22.55%22%3E%26lt%3B/%26gt%3B%3C/text%3E%0A%20%20%3Ctext%20x%3D%2218%22%20y%3D%22120%22%20font-size%3D%2220%22%20opacity%3D%22.5%22%3E01%3C/text%3E%0A%20%20%3Ctext%20x%3D%22230%22%20y%3D%22120%22%20font-size%3D%2222%22%20opacity%3D%22.55%22%3E%7B%20%7D%3C/text%3E%0A%20%20%3Ctext%20x%3D%2230%22%20y%3D%22260%22%20font-size%3D%2222%22%20opacity%3D%22.5%22%3E%26lt%3B/%26gt%3B%3C/text%3E%0A%20%20%3Ctext%20x%3D%22160%22%20y%3D%22288%22%20font-size%3D%2218%22%20opacity%3D%22.45%22%3E0101%3C/text%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22180%22%20font-size%3D%2220%22%20opacity%3D%22.5%22%3E%3B%3C/text%3E%0A%20%20%3Ctext%20x%3D%2295%22%20y%3D%2226%22%20font-size%3D%2217%22%20opacity%3D%22.45%22%3E01%3C/text%3E%0A%20%20%3Ctext%20x%3D%2210%22%20y%3D%22180%22%20font-size%3D%2218%22%20opacity%3D%22.4%22%3Efn%28%29%3C/text%3E%0A%3C/g%3E%0A%3Cg%20fill%3D%22%237fd4ff%22%20opacity%3D%22.22%22%3E%0A%20%20%3Crect%20x%3D%22180%22%20y%3D%22150%22%20width%3D%2270%22%20height%3D%224%22%20rx%3D%222%22/%3E%0A%20%20%3Crect%20x%3D%22180%22%20y%3D%22160%22%20width%3D%2246%22%20height%3D%224%22%20rx%3D%222%22/%3E%0A%20%20%3Crect%20x%3D%2228%22%20y%3D%22290%22%20width%3D%2260%22%20height%3D%224%22%20rx%3D%222%22/%3E%0A%3C/g%3E%0A%3C/svg%3E");
+  background-size: 320px 320px;
+  mix-blend-mode: screen;
+  opacity: .32;
+}
+
+[data-mode="light"] .tech-overlay-global {
+  opacity: .22;
+  mix-blend-mode: multiply;
+}
+
+@media (max-width: 640px) {
+  .tech-overlay-global {
+    background-size: 230px 230px;
+  }
+}

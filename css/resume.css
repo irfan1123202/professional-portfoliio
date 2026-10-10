@@ -1,0 +1,168 @@
+/* ============================================================
+   RESUME, EXPERIENCE & EDUCATION
+   Work Experience, Academic Background & CGPA Counter Card
+   ============================================================ */
+
+.pcard {
+  padding: clamp(20px, 2.4vw, 30px);
+}
+
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 2vw, 26px);
+  margin-top: clamp(36px, 5vw, 64px);
+}
+
+.pdate {
+  color: var(--blue-hi);
+  font-weight: 600;
+  font-size: .85rem;
+}
+
+.pcard h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 8px 0 2px;
+}
+
+.pkind {
+  color: var(--body2-hi);
+  font-weight: 600;
+  font-size: .95rem;
+  margin-bottom: 12px;
+}
+
+.pcard .pkind {
+  margin-bottom: 12px;
+}
+
+.pbody {
+  color: var(--body2);
+  font-size: .95rem;
+}
+
+.pcard .tags {
+  margin-top: 18px;
+}
+
+/* ============ Experience & Education Cards ============ */
+.xp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2.4vw, 32px);
+  margin-top: clamp(28px, 4vw, 48px);
+  align-items: start;
+}
+
+.xp {
+  padding: clamp(22px, 3vw, 38px);
+}
+
+.xp h3 {
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 8px 0 4px;
+}
+
+.bul {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.bul li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--body2);
+  font-size: .98rem;
+}
+
+.bul li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: .62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--violet));
+  box-shadow: 0 0 10px rgb(var(--b) / .7);
+}
+
+/* CGPA Counter Display */
+.cgpa {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 14px 0 8px;
+}
+
+.cgpa b {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(3rem, 6vw, 4.6rem);
+  line-height: 1;
+  background: linear-gradient(180deg, rgb(var(--al)), rgb(var(--a)) 50%, rgb(var(--b)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cgpa span {
+  color: var(--mute);
+  font-weight: 600;
+}
+
+.cw-label {
+  margin-top: 18px;
+  font-weight: 700;
+  font-size: .95rem;
+}
+
+.xp .cw-label + .tags {
+  margin-top: 10px;
+}
+
+.sub-h {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 5vw, 72px);
+  margin-top: clamp(44px, 7vw, 84px);
+}
+
+.langs {
+  margin-top: 24px;
+  color: var(--body2-hi);
+  font-weight: 600;
+}
+
+.loc {
+  margin-top: 26px;
+  font-size: .98rem;
+}
+
+.loc a {
+  color: var(--ice);
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 1000px) {
+  .proj-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .xp-grid,
+  .two {
+    grid-template-columns: 1fr;
+  }
+}

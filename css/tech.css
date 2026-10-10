@@ -1,0 +1,215 @@
+/* ============================================================
+   TECH UNIVERSE
+   Skills Section with 3D Flip-Cards & Dynamic Interactive Grids
+   ============================================================ */
+
+.tech {
+  position: relative;
+  padding: clamp(90px, 13vw, 150px) 0 clamp(60px, 9vw, 110px);
+  overflow: hidden;
+  background: var(--void);
+}
+
+.tech-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 46% 34% at 14% 8%, rgb(var(--a) / .16), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 88% 82%, rgb(var(--b) / .14), transparent 70%),
+    var(--void);
+}
+
+.tech-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .5;
+  background-image: radial-gradient(rgb(var(--ah) / .5) 1px, transparent 1.4px);
+  background-size: 46px 46px;
+}
+
+.tech .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.tech .sub {
+  margin-top: 10px;
+}
+
+#techGroups {
+  margin-top: clamp(36px, 5vw, 60px);
+  display: grid;
+  gap: clamp(34px, 5vw, 54px);
+}
+
+.tgroup-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.tgroup-head .dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgb(var(--cc));
+  box-shadow: 0 0 12px rgb(var(--cc) / .9);
+  flex: none;
+}
+
+.tgroup-head h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  color: var(--ice);
+}
+
+.tgroup-head .n {
+  color: var(--mute);
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.tgroup-head::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgb(var(--cc) / .5), transparent);
+}
+
+/* ============ 3D Flip-Card Grid ============ */
+.tgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: clamp(12px, 1.8vw, 20px);
+}
+
+.tcard {
+  --cc: var(--c-fe);
+  aspect-ratio: 1 / 1;
+  perspective: 900px;
+  opacity: 0;
+  transform: translateY(18px) scale(.94);
+  transition: opacity .55s ease, transform .55s ease;
+  transition-delay: var(--d, 0s);
+}
+
+.tcard.in {
+  opacity: 1;
+  transform: none;
+}
+
+.tcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .65s cubic-bezier(.2, .8, .2, 1);
+}
+
+.tcard.flip .tcard-inner {
+  transform: rotateY(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tcard-inner {
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  }
+  .tcard:hover .tcard-inner {
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(calc(var(--ry, 0deg) + 180deg));
+  }
+}
+
+.tface {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.tface-front {
+  background: linear-gradient(160deg, rgb(var(--cc) / .22), rgb(var(--dk) / .9) 65%);
+  border: 1px solid rgb(var(--cc) / .4);
+  box-shadow: 0 14px 30px rgb(0 0 0 / .4);
+}
+
+.tface-front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--sx, 30%) var(--sy, 20%), rgb(255 255 255 / .14), transparent 55%);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.tcard:hover .tface-front::after {
+  opacity: 1;
+}
+
+.ticon {
+  width: clamp(30px, 7vw, 44px);
+  height: clamp(30px, 7vw, 44px);
+  color: rgb(var(--cc));
+  filter: drop-shadow(0 0 10px rgb(var(--cc) / .65));
+  animation: iconFloat 3.6s ease-in-out infinite;
+}
+
+.tcard:nth-child(2n) .ticon { animation-delay: -1.2s; }
+.tcard:nth-child(3n) .ticon { animation-delay: -2.3s; }
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.ticon use {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.tname {
+  font-size: clamp(.72rem, 1.6vw, .86rem);
+  font-weight: 700;
+  color: var(--ice);
+}
+
+.tface-back {
+  background: linear-gradient(160deg, rgb(var(--cc) / .85), rgb(var(--cc) / .35) 120%);
+  border: 1px solid rgb(var(--cc) / .7);
+  transform: rotateY(180deg);
+  box-shadow: 0 14px 34px rgb(var(--cc) / .35);
+}
+
+.tnote {
+  font-size: clamp(.68rem, 1.6vw, .82rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: #fff;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .tcard-inner {
+    transition: transform .5s ease;
+  }
+}
+
+@media (max-width: 480px) {
+  .tgrid {
+    grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+  }
+}

@@ -1,0 +1,228 @@
+/* ============================================================
+   JOURNEY SECTION
+   Pinned Scroll Scene with Curved SVG Bezier Arc & Walking Node
+   ============================================================ */
+
+.journey {
+  height: 340vh;
+  height: 340svh;
+  background: var(--void);
+}
+
+.j-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(18px, 4svh, 42px);
+  padding: calc(env(safe-area-inset-top, 0px) + 70px) 0 34px;
+  background: radial-gradient(ellipse 70% 50% at 50% 30%, rgb(var(--b) / .2), transparent 70%), var(--void);
+}
+
+.j-head {
+  text-align: center;
+  padding: 0 6vw;
+}
+
+.j-head .sec-title::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============ Curved Bezier Arc ============ */
+.arc-wrap {
+  position: relative;
+  width: min(1180px, 94vw);
+  height: clamp(96px, 24vw, 230px);
+  margin: 0 auto;
+}
+
+.arc {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.arc path {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+}
+
+#arcBase {
+  stroke: rgb(var(--ah) / .22);
+  stroke-width: 1.5;
+}
+
+#arcLit {
+  stroke: url(#arcg);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 6px var(--blue));
+}
+
+/* ============ Milestone Nodes ============ */
+.node {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--void);
+  border: 2px solid rgb(var(--ah) / .5);
+  transition: border-color .4s, box-shadow .4s;
+}
+
+.node b {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 3.6vw, 2rem);
+  letter-spacing: 0;
+  color: var(--mute);
+  transition: color .4s;
+}
+
+.node.on {
+  border-color: var(--blue-hi);
+  box-shadow: 0 0 0 6px rgb(var(--a) / .22), 0 0 20px var(--blue);
+}
+
+.node.on b {
+  color: var(--ice);
+}
+
+.node::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 1.5px solid rgb(var(--ah) / .55);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.node.on::after {
+  animation: nodePulse 1.8s ease-out infinite;
+}
+
+@keyframes nodePulse {
+  0% { opacity: .7; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.4); }
+}
+
+/* Walking Glowing Puck */
+.walker {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgb(var(--ah) / .35), 0 0 26px 6px var(--blue);
+  z-index: 2;
+}
+
+/* ============ Journey Milestone Cards ============ */
+.cards {
+  width: min(1180px, 94vw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(8px, 1.2vw, 18px);
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: 16px 16px 14px;
+  border-radius: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  opacity: .38;
+  transition: opacity .5s, transform .5s, border-color .5s, box-shadow .5s;
+}
+
+.card.on {
+  opacity: 1;
+  transform: translateY(-6px);
+  border-color: rgb(var(--ah) / .6);
+  box-shadow: 0 0 44px rgb(var(--a) / .25);
+}
+
+.card .yr {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0;
+  color: var(--blue-hi);
+  display: none;
+}
+
+.card h3 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: var(--body2);
+  font-size: .86rem;
+  line-height: 1.5;
+}
+
+.snip {
+  margin: 12px 0 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, .4);
+  border: 1px solid rgb(var(--ah) / .14);
+  font: .7rem / 1.55 var(--mono);
+  color: #a9c4ff;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ============ Responsive Journey ============ */
+@media (min-width: 761px) {
+  .card:nth-child(2) {
+    transition-delay: 0s;
+  }
+}
+
+@media (max-width: 1000px) {
+  .cards {
+    grid-template-columns: 1fr;
+    grid-template-areas: "c";
+  }
+  .card {
+    grid-area: c;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    padding: 22px 22px 20px;
+  }
+  .card.on {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+  .card .yr {
+    display: block;
+  }
+  .card h3 {
+    font-size: 1.2rem;
+  }
+  .card p {
+    font-size: .95rem;
+  }
+  .snip {
+    font-size: .78rem;
+  }
+}
